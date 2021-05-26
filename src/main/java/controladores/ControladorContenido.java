@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import entidades.Contenidos;
+import entidades.Pelicula;
 
 public class ControladorContenido {
 	// Factoria para obtener objetos EntityManager
@@ -84,6 +85,21 @@ public class ControladorContenido {
 		this.em.close();
 		return contenidos;
 
+	}
+	
+	// Encuentra una pelicula por el nombre (solo 1 resultado)
+	public Contenidos buscarPorNombre(String nombre) {
+		this.em = entityManagerFactory.createEntityManager();
+		this.consulta = em.createNamedQuery("Contenidos.findContenido");
+		this.consulta.setParameter("nombre", nombre);
+		Contenidos c = null;
+		try {
+			c = (Contenidos) consulta.getSingleResult();
+		} catch (NoResultException nre) {
+			c = null;
+		}
+		this.em.close();
+		return c;
 	}
 
 	// Método que devuelve una lista con todos los contenidos

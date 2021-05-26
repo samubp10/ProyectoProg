@@ -113,7 +113,7 @@ public class ControladorPelicula {
 
 	// En este caso se va a utilizar una nativeQuery, que permite pasar código
 	// SQL directamente a la base de datos
-	public List<Pelicula> findByDuracion(int duracion) {
+	public List<Pelicula> buscarPorDuracion(int duracion) {
 		this.em = entityManagerFactory.createEntityManager();
 		this.consulta = em.createNativeQuery("Select * from peliculas where duracion=?", Pelicula.class);
 		this.consulta.setParameter(1, duracion);

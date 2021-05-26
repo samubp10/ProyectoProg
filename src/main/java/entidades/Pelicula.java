@@ -114,17 +114,21 @@ public class Pelicula implements Serializable {
 		String nombres = (this.contenidos != null) ? this.contenidos.getNombre() : "";
 
 		StringBuilder builder = new StringBuilder();
-		builder.append("Pelicula [peliculaID=");
+		builder.append("peliculaID = ");
 		builder.append(peliculaID);
-		builder.append(", duracion=");
+		builder.append(" || duracion = ");
 		builder.append(duracion);
-		builder.append(", nombre=");
+		builder.append(" || nombre = ");
 		builder.append(nombre);
-		builder.append(", premios=");
+		builder.append(" || premios = ");
 		builder.append(premios);
-		builder.append(", contenidos=");
-		builder.append(nombres);
-		builder.append("]");
+		builder.append(" || contenidos = ");
+		if(!nombres.equalsIgnoreCase("")) {
+			builder.append(nombres);
+			}else {
+				builder.append("ninguno");
+			}
+		builder.append("\n");
 		return builder.toString();
 	}
 

@@ -17,8 +17,12 @@ import javax.persistence.*;
 @Table(name = "series")
 
 //@NamedQuery, sirve para indicar consultas identificables por un nombre
+@NamedQueries({
+@NamedQuery(name = "Serie.findAll", query = "SELECT s FROM Serie s"),
+@NamedQuery(name = "Serie.findSerie", query = "SELECT s FROM Serie s WHERE s.nombre = :nombre"),
+ })
 
-@NamedQuery(name = "Serie.findAll", query = "SELECT s FROM Serie s")
+
 
 //Nombre de la clase y la implementación 
 public class Serie implements Serializable {
@@ -132,24 +136,28 @@ public class Serie implements Serializable {
 
 		// Para evitar llamadas concatenadas entre objetos relacionados voy
 		// a usar el atributo nombre del cliente, no el toString completo.
-		String nombre = (this.contenidos != null) ? this.contenidos.getNombre() : "";
+		String nombres = (this.contenidos != null) ? this.contenidos.getNombre() : "";
 
 		StringBuilder builder = new StringBuilder();
-		builder.append("Serie [serieID=");
+		builder.append("serieID = ");
 		builder.append(serieID);
-		builder.append(", duracion=");
+		builder.append(" || duracion=");
 		builder.append(duracion);
-		builder.append(", episodios=");
+		builder.append(" || episodios=");
 		builder.append(episodios);
-		builder.append(", nombre=");
+		builder.append(" || nombre=");
 		builder.append(nombre);
-		builder.append(", premios=");
+		builder.append(" || premios=");
 		builder.append(premios);
-		builder.append(", temporadas=");
+		builder.append(" || temporadas=");
 		builder.append(temporadas);
-		builder.append(", contenidos=");
-		builder.append(nombre);
-		builder.append("]");
+		builder.append(" || contenidos=");
+		if(!nombres.equalsIgnoreCase("")) {
+		builder.append(nombres);
+		}else {
+			builder.append("ninguno");
+		}
+		builder.append("\n");
 		return builder.toString();
 	}
 

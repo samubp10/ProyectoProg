@@ -110,19 +110,17 @@ public class Actrices implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Actrices [actrizID=");
+		builder.append("actrizID=");
 		builder.append(actrizID);
-		builder.append(", apellido=");
+		builder.append(" || apellido=");
 		builder.append(apellido);
-		builder.append(", nombre=");
+		builder.append(" || nombre=");
 		builder.append(nombre);
-		builder.append(", pelicula=");
+		builder.append(" || pelicula=");
 		builder.append(pelicula);
-		builder.append(", premios=");
+		builder.append(" || premios=");
 		builder.append(premios);
-		builder.append(", contenidos=");
-		builder.append(contenidos);
-		builder.append("]");
+		builder.append("\n");
 		return builder.toString();
 	}
 

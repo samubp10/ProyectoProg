@@ -63,8 +63,20 @@ public class DetalleComentanPK implements Serializable {
 		final int prime = 31;
 		int hash = 17;
 		hash = hash * prime + this.contenidoID;
-		hash = hash * prime + this.usuarioID;
+		hash = hash * prime + this.usuarioID; 
 		
 		return hash;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("contenidoID = ");
+		builder.append(contenidoID);
+		builder.append(" || usuarioID =" );
+		builder.append(usuarioID);
+		return builder.toString();
+	}
+	
+	
 }

@@ -277,27 +277,27 @@ public class Contenidos implements Serializable {
 		String nombres = (this.directores != null) ? this.directores.getNombre() : "";
 
 		StringBuilder builder = new StringBuilder();
-		builder.append("Contenidos [contenidoID=");
+		builder.append("contenidoID = ");
 		builder.append(contenidoID);
-		builder.append(", nombre=");
+		builder.append(" || nombre = ");
 		builder.append(nombre);
-		builder.append(", numeroLikes=");
+		builder.append(" || numeroLikes = ");
 		builder.append(numeroLikes);
-		builder.append(", premium=");
+		builder.append(" || premium = ");
 		builder.append(premium);
-		builder.append(", directores=");
+		builder.append(" || directores = ");
 		builder.append(nombres);
-		builder.append(", documentalesContenidos=");
+		if(!documentalesContenidos.isEmpty()){
+		builder.append(" || documentalesContenidos = ");
 		builder.append(documentalesContenidos);
-		builder.append(", peliculasContenidos=");
+		}else if(!peliculasContenidos.isEmpty()){
+		builder.append(" || peliculasContenidos = ");
 		builder.append(peliculasContenidos);
-		builder.append(", seriesContenidos=");
+		}else if (!seriesContenidos.isEmpty()){
+		builder.append(" || seriesContenidos = ");
 		builder.append(seriesContenidos);
-		builder.append(", actrices=");
-		builder.append(actrices);
-		builder.append(", detalleComentans=");
-		builder.append(detalleComentans);
-		builder.append("]");
+		}
+		builder.append("\n");
 		return builder.toString();
 	}
 

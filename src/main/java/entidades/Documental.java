@@ -17,9 +17,8 @@ import javax.persistence.*;
 @Table(name = "documentales")
 
 //@NamedQuery, sirve para indicar consultas identificables por un nombre
-
-@NamedQuery(name = "Documental.findAll", query = "SELECT d FROM Documental d")
-
+@NamedQueries({ @NamedQuery(name = "Documental.findAll", query = "SELECT d FROM Documental d"),
+		@NamedQuery(name = "Documental.findDocumental", query = "SELECT d FROM Documental d WHERE d.nombre = :nombre"), })
 
 //Nombre de la clase y la implementación 
 public class Documental implements Serializable {
@@ -35,8 +34,8 @@ public class Documental implements Serializable {
 	// y permite que la base de datos genere un nuevo valor con cada operación de
 	// inserción
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	//ATRIBUTOS
+
+	// ATRIBUTOS
 	private int doumentalID;
 
 	private int duracion;
@@ -51,7 +50,7 @@ public class Documental implements Serializable {
 	// Relación bidireccional muchos a uno con contenidos
 	// Muchos documentales pueden ser del mismo contenido, pero un documental
 	// solo puede pertenecer a un contenido.
-	// Este atributo representa el contenido en el que se encuentra este 
+	// Este atributo representa el contenido en el que se encuentra este
 	// documental
 	// La tabla documental es la propietaria de la relación al tener la clave
 	// ajena
@@ -61,11 +60,11 @@ public class Documental implements Serializable {
 	@JoinColumn(name = "contenidoID")
 	private Contenidos contenidos;
 
-	//CONTRUCTOR
+	// CONTRUCTOR
 	public Documental() {
 	}
 
-	//GETTERS Y SETTERS
+	// GETTERS Y SETTERS
 	public int getDoumentalID() {
 		return this.doumentalID;
 	}
@@ -108,26 +107,28 @@ public class Documental implements Serializable {
 
 	@Override
 	public String toString() {
-		
+
 		// Para evitar llamadas concatenadas entre objetos relacionados voy
-				// a usar el atributo nombre del cliente, no el toString completo.
-				String nombres = (this.contenidos != null) ? this.contenidos.getNombre() : "";
-		
+		// a usar el atributo nombre del cliente, no el toString completo.
+		String nombres = (this.contenidos != null) ? this.contenidos.getNombre() : "";
+
 		StringBuilder builder = new StringBuilder();
-		builder.append("Documental [doumentalID=");
+		builder.append("doumentalID = ");
 		builder.append(doumentalID);
-		builder.append(", duracion=");
+		builder.append(" || duracion = ");
 		builder.append(duracion);
-		builder.append(", nombre=");
+		builder.append(" || nombre=");
 		builder.append(nombre);
-		builder.append(", premios=");
+		builder.append(" || premios=");
 		builder.append(premios);
-		builder.append(", contenidos=");
-		builder.append(nombres);
-		builder.append("]");
+		builder.append(" || contenidos=");
+		if (!nombres.equalsIgnoreCase("")) {
+			builder.append(nombres);
+		} else {
+			builder.append("ninguno");
+		}
+		builder.append("\n");
 		return builder.toString();
 	}
 
-	
-	
 }

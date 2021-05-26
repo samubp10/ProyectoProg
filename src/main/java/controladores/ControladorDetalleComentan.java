@@ -83,6 +83,19 @@ public class ControladorDetalleComentan {
 		return listaComentarios;
 
 	}
+	
+	// En este caso se va a utilizar una nativeQuery, que permite pasar código
+	// SQL directamente a la base de datos
+	public List<DetalleComentan> buscarPorContenidoID(int contenidoID) {
+		this.em = entityManagerFactory.createEntityManager();
+		//Query
+		this.consulta = em.createNativeQuery("Select * from detallecomentan where contenidoID=?", DetalleComentan.class);
+		this.consulta.setParameter(1, contenidoID);
+		List<DetalleComentan> listaComentarios = (List<DetalleComentan>) consulta.getResultList();
+		this.em.close();
+		return listaComentarios;
+
+	}
 
 	//Saca todos los comentarios
 	public List<DetalleComentan> buscarTodosLosComentarios() {

@@ -31,7 +31,7 @@ public class DetalleComentan implements Serializable {
 	// Relación bidireccional muchos a uno con contenidos
 	// Muchos comentarios pueden ser del mismo contenido, pero un comentario
 	// solo puede pertenecer a un contenido.
-	// Este atributo representa el contenido en el que se encuentra este 
+	// Este atributo representa el contenido en el que se encuentra este
 	// comentario
 	// La tabla DetalleComentan es la propietaria de la relación al tener la clave
 	// ajena
@@ -103,15 +103,15 @@ public class DetalleComentan implements Serializable {
 		String nombre = (this.usuario != null) ? this.usuario.getNombre() : "";
 
 		StringBuilder builder = new StringBuilder();
-		builder.append("DetalleComentan [id=");
+		builder.append("id = ");
 		builder.append(id);
-		builder.append(", comentarios=");
+		builder.append(" || comentario = ");
 		builder.append(comentarios);
-		builder.append(", contenidos=");
+		builder.append(" || contenidos = ");
 		builder.append(contenidos);
-		builder.append(", usuario=");
+		builder.append(" || usuario = ");
 		builder.append(nombre);
-		builder.append("]");
+		builder.append("\n");
 		return builder.toString();
 	}
 

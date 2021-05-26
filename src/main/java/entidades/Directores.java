@@ -138,17 +138,15 @@ public class Directores implements Serializable {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Directores [directorID=");
 		builder.append(directorID);
-		builder.append(", apellido=");
+		builder.append(" || apellido=");
 		builder.append(apellido);
-		builder.append(", contenido=");
+		builder.append(" || contenido=");
 		builder.append(contenido);
-		builder.append(", nombre=");
+		builder.append(" || nombre=");
 		builder.append(nombre);
-		builder.append(", premios=");
+		builder.append(" || premios=");
 		builder.append(premios);
-		builder.append(", contenidosDirectores=");
-		builder.append(contenidosDirectores);
-		builder.append("]");
+		builder.append("\n");
 		return builder.toString();
 	}
 

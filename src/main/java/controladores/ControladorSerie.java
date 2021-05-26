@@ -92,7 +92,7 @@ public class ControladorSerie {
 	// Encuentra a una serie por el nombre (solo 1 resultado)
 	public Serie buscarPorNombre(String nombre) {
 		this.em = entityManagerFactory.createEntityManager();
-		this.consulta = em.createNamedQuery("Serie.findAll");
+		this.consulta = em.createNamedQuery("Serie.findSerie");
 		this.consulta.setParameter("nombre", nombre);
 		Serie serie = null;
 		try {

@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import entidades.Documental;
+import entidades.Pelicula;
 import entidades.Usuario;
 
 public class ControladorDocumental {
@@ -85,6 +86,22 @@ public class ControladorDocumental {
 		this.em.close();
 		return documental;
 
+	}
+	
+	
+	// Encuentra una pelicula por el nombre (solo 1 resultado)
+	public Documental buscarPorNombre(String nombre) {
+		this.em = entityManagerFactory.createEntityManager();
+		this.consulta = em.createNamedQuery("Documental.findDocumental");
+		this.consulta.setParameter("nombre", nombre);
+		Documental d = null;
+		try {
+			d = (Documental) consulta.getSingleResult();
+		} catch (NoResultException nre) {
+			d = null;
+		}
+		this.em.close();
+		return d;
 	}
 
 	//Devuleve una lista de todos los documentales
